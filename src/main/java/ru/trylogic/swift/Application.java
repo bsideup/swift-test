@@ -9,6 +9,7 @@ import org.apache.thrift.server.TServlet;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import ru.trylogic.swift.protocol.TExampleAsyncService;
 import ru.trylogic.swift.protocol.TExampleService;
 
 import javax.servlet.Servlet;
@@ -31,7 +32,7 @@ public class Application {
     }
     
     @Bean
-    Servlet thrift(ThriftCodecManager thriftCodecManager, TProtocolFactory protocolFactory, TExampleService exampleService) {
+    Servlet thrift(ThriftCodecManager thriftCodecManager, TProtocolFactory protocolFactory, TExampleAsyncService exampleService) {
         ThriftServiceProcessor processor = new ThriftServiceProcessor(thriftCodecManager, Arrays.<ThriftEventHandler>asList(), exampleService);
 
         return new TServlet(

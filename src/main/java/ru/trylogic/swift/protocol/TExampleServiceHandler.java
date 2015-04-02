@@ -9,20 +9,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class TExampleServiceHandler implements TExampleService {
+public class TExampleServiceHandler implements TExampleAsyncService {
 
     ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10);
     
-    public String sayHello(TUser user) throws TEmptyNameException {
-        if(user == null || user.getFirstName() == null || user.getFirstName().isEmpty()) {
-            throw new TEmptyNameException();
-        }
-        
-        return "Hello " + user.getFirstName();
-    }
-
     @Override
-    public ListenableFuture<String> sayHelloAsync(TUser user) throws TEmptyNameException {
+    public ListenableFuture<String> sayHello(TUser user) throws TEmptyNameException {
         SettableFuture<String> result = SettableFuture.create();
 
         executorService.schedule(() -> {
