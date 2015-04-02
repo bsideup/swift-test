@@ -2,6 +2,7 @@ package ru.trylogic.swift;
 
 import com.facebook.nifty.client.HttpClientConnector;
 import com.facebook.swift.service.ThriftClientManager;
+import com.google.common.util.concurrent.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,5 +49,17 @@ public class ExampleServiceTest {
     @Test(expected = TEmptyNameException.class)
     public void testSayHelloWithEmptyName() throws Exception {
         service.sayHello(null);
+    }
+
+    @Test
+    public void testSayHelloAsync() throws Exception {
+        assertEquals("Hello Sergei", service.sayHelloAsync(new TUser("Sergei", "Egorov")).get());
+    }
+
+    @Test(expected = TEmptyNameException.class)
+    public void testSayHelloAsyncWithEmptyName() throws Throwable {
+        ListenableFuture<String> future = service.sayHelloAsync(null);
+
+        Futures.get(future, TEmptyNameException.class);
     }
 }
