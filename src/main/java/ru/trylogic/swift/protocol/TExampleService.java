@@ -10,5 +10,5 @@ public interface TExampleService {
     @ThriftMethod(exception = {
             @ThriftException(type = TEmptyNameException.class, id = 1)
     })
-    String sayHello(String name) throws TEmptyNameException;
+    String sayHello(TUser name) throws TEmptyNameException;
 }

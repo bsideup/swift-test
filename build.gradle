@@ -20,6 +20,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+
+    compile "org.projectlombok:lombok:1.16.2"
+    
     compile("org.springframework.boot:spring-boot-starter-web")
 
     compile 'com.facebook.swift:swift-annotations:0.14.1'

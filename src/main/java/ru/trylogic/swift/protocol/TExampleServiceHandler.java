@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TExampleServiceHandler implements TExampleService {
 
-    public String sayHello(String name) throws TEmptyNameException {
-        if(name == null || name.isEmpty()) {
+    public String sayHello(TUser user) throws TEmptyNameException {
+        if(user == null || user.getFirstName() == null || user.getFirstName().isEmpty()) {
             throw new TEmptyNameException();
         }
         
-        return "Hello " + name;
+        return "Hello " + user.getFirstName();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import ru.trylogic.swift.protocol.TEmptyNameException;
 import ru.trylogic.swift.protocol.TExampleService;
+import ru.trylogic.swift.protocol.TUser;
 
 import java.net.URI;
 
@@ -41,7 +42,7 @@ public class ExampleServiceTest {
 
     @Test
     public void testSayHello() throws Exception {
-        assertEquals("Hello world", service.sayHello("world"));
+        assertEquals("Hello Sergei", service.sayHello(new TUser("Sergei", null)));
     }
 
     @Test(expected = TEmptyNameException.class)
